@@ -26,21 +26,22 @@ set background=dark
 let g:solarized_termtrans = 1
 
 "" Highlight found search patterns
-set hlsearch
+"set hlsearch
 
 "" Press jj to escape of insert mode
 inoremap jj <Esc>
 
-"inoremap {<cr> {<cr>}<c-o>O<tab>
-"inoremap ({<cr> ({<cr>});<c-o>O<tab>
+" vv to generate new vertical split
+nnoremap <silent> vv <C-w>v
 
-"inoremap {<cr> {<cr>}<c-o>O
-"inoremap { {<CR>}<Esc>ko
-"inoremap ({ ({<CR>})<C-o>A;<Esc>ko
+" ss to generate new horizontal split
+nnoremap <silent> ss <C-w>s
 
-"inoremap [<cr> [<cr>]<c-o>O
-"inoremap (<cr> (<cr>)<c-o>O
+"fzf Ag
+nnoremap <C-g>g :Ag<CR>
 
+"fzf Find 
+nnoremap <C-p> :Files<CR>
 
 nnoremap <leader><leader> :w<cr>
 inoremap <leader><leader> <ESC>:w<cr>
@@ -87,12 +88,14 @@ call plug#begin()
 		\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
   Plug 'scrooloose/nerdtree'
   Plug 'altercation/vim-colors-solarized'
-  Plug 'kien/ctrlp.vim'
   Plug 'scrooloose/syntastic'
   Plug 'alexlafroscia/vim-ember-cli'
   Plug 'joukevandermaas/vim-ember-hbs'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 "End vim-plug manager
 

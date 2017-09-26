@@ -99,3 +99,9 @@ rbenv() {
   rbenv "$@"
 }
 export PATH="$HOME/.rbenv/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Setting ag as the default source for fzf
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
