@@ -50,6 +50,9 @@ inoremap ;; <C-o>A;
 inoremap ;;; <C-o>A;<cr>
 inoremap ,, <C-o>A,
 
+set backspace=indent,eol,start
+
+
 let g:ctrlp_working_path_mode = 'w'
 let g:ctrlp_custom_ignore = {
       \ 'dir':  '\v[\/](bower_components|node_modules|tmp|_build|dist|deps)$',
