@@ -121,6 +121,7 @@ call plug#begin()
   Plug 'elixir-lang/vim-elixir'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug 'ap/vim-css-color'
 call plug#end()
 "End vim-plug manager
 
