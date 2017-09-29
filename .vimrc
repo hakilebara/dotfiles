@@ -37,6 +37,10 @@ nnoremap <silent> vv <C-w>v
 " ss to generate new horizontal split
 nnoremap <silent> ss <C-w>s
 
+" split sanity
+set splitbelow
+set splitright
+
 "fzf Ag
 nnoremap <C-g>g :Ag<CR>
 
@@ -49,6 +53,9 @@ nnoremap <tab><tab> :NERDTreeToggle<cr>
 inoremap ;; <C-o>A;
 inoremap ;;; <C-o>A;<cr>
 inoremap ,, <C-o>A,
+
+nnoremap <Leader>= :vertical resize +5<cr>
+nnoremap <Leader>- :vertical resize -5<cr>
 
 set backspace=indent,eol,start
 
@@ -84,6 +91,11 @@ set iskeyword+=-
 
 let g:AutoPairsShortcutFastWrap = '<C-e>'
 
+let g:mustache_abbreviations = 1
+
+let syntastic_mode_map = { 'passive_filetypes': ['handlebars'] }
+
+
 "Start of vim-plug manager
 call plug#begin()
 	Plug 'prettier/vim-prettier', {
@@ -92,11 +104,21 @@ call plug#begin()
   Plug 'scrooloose/nerdtree'
   Plug 'altercation/vim-colors-solarized'
   Plug 'scrooloose/syntastic'
+  Plug 'tpope/vim-surround'
+  Plug 'bling/vim-airline'
+  Plug 'pangloss/vim-javascript'
   Plug 'alexlafroscia/vim-ember-cli'
+  Plug 'vim-scripts/matchit.zip'
+  Plug 'mustache/vim-mustache-handlebars'
+  Plug 'valloric/youcompleteme'
   Plug 'joukevandermaas/vim-ember-hbs'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'mattn/emmet-vim'
+  Plug 'tomtom/tcomment_vim'
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'slashmili/alchemist.vim'
+  Plug 'elixir-lang/vim-elixir'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 call plug#end()
