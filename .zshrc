@@ -6,7 +6,7 @@ export PATH="/usr/local/opt/php71/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/kaos/.oh-my-zsh
 alias vim='/usr/local/bin/vim'
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
