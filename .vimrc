@@ -122,6 +122,7 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'ap/vim-css-color'
+  Plug 'hail2u/vim-css3-syntax'
 call plug#end()
 "End vim-plug manager
 
