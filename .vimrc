@@ -123,11 +123,26 @@ let g:ale_linters = {
 \   'html': [''],
 \   'html.handlebars': ['ember-template-lint'],
 \}
+let g:ale_cpp_cc_options = '-std=c++17 -Wall'
+let g:ale_c_cc_options = '-std=c2x -Wall'
 
 let g:ale_sign_error = '🍄'
 let g:ale_sign_warning = '🙀'
-let g:fugitive_gitlab_domains = ['https://gitlab.qonto.co']
 
+"vimspector configuration
+let g:vimspector_base_dir='/Users/kaos/.vim/plugged/vimspector'
+let g:vimspector_enable_mappings='HUMAN'
+nnoremap <Leader>dd :call vimspector#Launch()<CR>
+nnoremap <Leader>de :call vimspector#Reset()<CR>
+nnoremap <Leader>dc :call vimspector#Continue()<CR>
+
+nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
+
+nmap <Leader>dk <Plug>VimspectorRestart
+nmap <Leader>dh <Plug>VimspectorStepOut
+nmap <Leader>dl <Plug>VimspectorStepInto
+nmap <Leader>dj <Plug>VimspectorStepOver
 
 "Start of vim-plug manager
 call plug#begin()
@@ -150,14 +165,15 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'ap/vim-css-color'
-  Plug 'hail2u/vim-css3-syntax'
+ Plug 'hail2u/vim-css3-syntax'
   Plug 'heartsentwined/vim-emblem'
   Plug 'tpope/vim-fugitive'
-  Plug 'shumphrey/fugitive-gitlab.vim'
+  " Plug 'shumphrey/fugitive-gitlab.vim'
   Plug 'tpope/vim-rhubarb'
   Plug 'junegunn/gv.vim'
   Plug 'sukima/vim-javascript-imports'
   Plug 'terryma/vim-multiple-cursors'
+  Plug 'puremourning/vimspector'
   " Plug 'altercation/vim-colors-solarized'
   " Plug 'vim-airline/vim-airline-themes'
   Plug 'dracula/vim'
