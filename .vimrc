@@ -92,13 +92,6 @@ let g:vim_javascript_imports_map = '<Leader>e'
 
 
 " ----------------------------------------------------------------------------
-" vim-airline
-" ----------------------------------------------------------------------------
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='atomic'
-
-" ----------------------------------------------------------------------------
 " ALE
 " ----------------------------------------------------------------------------
 nnoremap <Leader>ln :ALENextWrap<CR>
@@ -129,6 +122,8 @@ let g:ale_c_cc_options = '-std=c2x -Wall'
 let g:ale_sign_error = '🍄'
 let g:ale_sign_warning = '🙀'
 
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "Disable automatic comment insertion
+
 "vimspector configuration
 let g:vimspector_base_dir='/Users/kaos/.vim/plugged/vimspector'
 let g:vimspector_enable_mappings='HUMAN'
@@ -149,9 +144,7 @@ call plug#begin()
   Plug 'w0rp/ale'
   Plug 'scrooloose/nerdtree'
   Plug 'tpope/vim-surround'
-  " Plug 'vim-airline/vim-airline'
   Plug 'pangloss/vim-javascript'
-  Plug 'alexlafroscia/vim-ember-cli'
   Plug 'vim-scripts/matchit.zip'
   Plug 'mustache/vim-mustache-handlebars'
   Plug 'joukevandermaas/vim-ember-hbs'
@@ -168,14 +161,11 @@ call plug#begin()
  Plug 'hail2u/vim-css3-syntax'
   Plug 'heartsentwined/vim-emblem'
   Plug 'tpope/vim-fugitive'
-  " Plug 'shumphrey/fugitive-gitlab.vim'
   Plug 'tpope/vim-rhubarb'
   Plug 'junegunn/gv.vim'
   Plug 'sukima/vim-javascript-imports'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'puremourning/vimspector'
-  " Plug 'altercation/vim-colors-solarized'
-  " Plug 'vim-airline/vim-airline-themes'
   Plug 'dracula/vim'
   Plug 'octol/vim-cpp-enhanced-highlight'
 call plug#end()
