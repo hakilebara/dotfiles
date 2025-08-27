@@ -117,27 +117,14 @@ let g:ale_linters = {
 \   'html.handlebars': ['ember-template-lint'],
 \}
 let g:ale_cpp_cc_options = '-std=c++17 -Wall'
-let g:ale_c_cc_options = '-std=c2x -Wall'
+
+let g:ale_c_cc_executable = 'gcc-14'
+let g:ale_c_cc_options = '-std=c23 -Wall'
 
 let g:ale_sign_error = '🍄'
 let g:ale_sign_warning = '🙀'
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "Disable automatic comment insertion
-
-"vimspector configuration
-let g:vimspector_base_dir='/Users/kaos/.vim/plugged/vimspector'
-let g:vimspector_enable_mappings='HUMAN'
-nnoremap <Leader>dd :call vimspector#Launch()<CR>
-nnoremap <Leader>de :call vimspector#Reset()<CR>
-nnoremap <Leader>dc :call vimspector#Continue()<CR>
-
-nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
-nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
-
-nmap <Leader>dk <Plug>VimspectorRestart
-nmap <Leader>dh <Plug>VimspectorStepOut
-nmap <Leader>dl <Plug>VimspectorStepInto
-nmap <Leader>dj <Plug>VimspectorStepOver
 
 "Start of vim-plug manager
 call plug#begin()
@@ -165,7 +152,6 @@ call plug#begin()
   Plug 'junegunn/gv.vim'
   Plug 'sukima/vim-javascript-imports'
   Plug 'terryma/vim-multiple-cursors'
-  Plug 'puremourning/vimspector'
   Plug 'dracula/vim'
   Plug 'octol/vim-cpp-enhanced-highlight'
 call plug#end()
