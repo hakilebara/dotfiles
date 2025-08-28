@@ -7,6 +7,8 @@ export PATH="/usr/local/opt/php71/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 alias vim='/usr/local/bin/vim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias g++='g++ -std=c++17 -Wall'
+alias gcc='gcc-14 -std=c23 -Wall'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -58,7 +60,8 @@ ZSH_THEME="tonotdo"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git macos)
+plugins=(git macos vi-mode)
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -67,7 +70,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -91,17 +94,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#if which rbenv > /dev/null;
-#  then eval "$(rbenv init -)";
-#fi
-rbenv() {
-  eval "$(command rbenv init -)"
-  rbenv "$@"
-}
-export PATH="$HOME/.rbenv/bin:$PATH"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+
+. "$HOME/.local/bin/env"
