@@ -38,9 +38,12 @@ set splitbelow
 set splitright
 
 "fzf Ag
-nnoremap <C-g>g :Ag<CR>
+nnoremap <C-g>g :Ag!<CR>
+" to have Ag ignore specific files run this command in your project folder
+" echo package-lock.json > .ignore
 
 "fzf Find 
+" install bat to enable file preview
 nnoremap <C-p> :Files<CR>
 
 " on osx the <leader> key is \
@@ -54,18 +57,11 @@ inoremap ,, <C-o>A,
 
 "ref: https://stackoverflow.com/questions/21888869/how-to-make-ctrlps-search-directory-change-according-to-nerdtrees-root
 let g:NERDTreeChDirMode       = 2
-let g:ctrlp_working_path_mode = 'rw'
 
 nnoremap <Leader>= :vertical resize +15<cr>
 nnoremap <Leader>- :vertical resize -15<cr>
 
 set backspace=indent,eol,start
-
-
-let g:ctrlp_working_path_mode = 'w'
-let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/](bower_components|node_modules|mirage|tmp|_build|dist|deps)$',
-  \ }
 
 ""
 "" Backup and swap files
@@ -133,7 +129,7 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'pangloss/vim-javascript'
   Plug 'vim-scripts/matchit.zip'
-  Plug 'mustache/vim-mustache-handlebars'
+  " Plug 'mustache/vim-mustache-handlebars'
   Plug 'joukevandermaas/vim-ember-hbs'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'jiangmiao/auto-pairs'
@@ -146,7 +142,6 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'ap/vim-css-color'
  Plug 'hail2u/vim-css3-syntax'
-  Plug 'heartsentwined/vim-emblem'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'junegunn/gv.vim'
