@@ -86,6 +86,18 @@ let g:mustache_abbreviations = 1
 
 let g:vim_javascript_imports_map = '<Leader>e'
 
+" ----------------------------------------------------------------------------
+" Vim terminal
+" ----------------------------------------------------------------------------
+
+" vim-powered terminal in split window
+map <Leader>t :term ++close<cr>
+tmap <Leader>t <c-w>:term ++close<cr>
+
+" vim-powered terminal in new tab
+map <Leader>T :tab term ++close<cr>
+tmap <Leader>T <c-w>:tab term ++close<cr>
+
 
 " ----------------------------------------------------------------------------
 " ALE
@@ -112,10 +124,10 @@ let g:ale_linters = {
 \   'html': [''],
 \   'html.handlebars': ['ember-template-lint'],
 \}
-let g:ale_cpp_cc_options = '-std=c++17 -Wall'
+let g:ale_cpp_cc_options = '-std=c++17 -Wall -I/usr/local/Cellar/sdl2/2.32.0/include/SDL2 -L/usr/local/Cellar/sdl2/2.32.0/lib'
 
 let g:ale_c_cc_executable = 'gcc-14'
-let g:ale_c_cc_options = '-std=c23 -Wall'
+let g:ale_c_cc_options = '-std=c23 -Wall -I/usr/local/Cellar/raylib/5.5/include -L/usr/local/Cellar/raylib/5.5/lib'
 
 let g:ale_sign_error = '🍄'
 let g:ale_sign_warning = '🙀'
@@ -149,6 +161,7 @@ call plug#begin()
   Plug 'terryma/vim-multiple-cursors'
   Plug 'dracula/vim'
   Plug 'octol/vim-cpp-enhanced-highlight'
+  Plug 'vim-utils/vim-man'
 call plug#end()
 "End vim-plug manager
 
