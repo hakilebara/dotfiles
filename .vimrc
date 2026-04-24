@@ -1,12 +1,18 @@
+" Getting started
+"  - install vim-plug https://github.com/junegunn/vim-plug
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" - mkdir ~/.vim/{_temp,_backup}
 syntax on
 filetype plugin indent on
 
 set autoindent
+set smartindent
 set encoding=utf-8
 set nofixendofline
 
 set clipboard=unnamed " Use the default OS Clipboard
-set pastetoggle=<F2>
+" set pastetoggle=<F2>
 
 set ruler
 set cursorline
@@ -98,10 +104,45 @@ tmap <Leader>t <c-w>:term ++close<cr>
 map <Leader>T :tab term ++close<cr>
 tmap <Leader>T <c-w>:tab term ++close<cr>
 
+" ----------------------------------------------------------------------------
+" Coc
+" ----------------------------------------------------------------------------
+
+" Show documentation/hover popup
+nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+
+" Go to definition
+nmap <silent> gd <Plug>(coc-definition)
+
+" Go to references
+nmap <silent> gr <Plug>(coc-references)
+
+" Rename symbol
+nmap <leader>rn <Plug>(coc-rename)
+
+" ----------------------------------------------------------------------------
+" ZIG LSP with Coc
+" https://zigtools.org/zls/editors/vim/coc/
+" ----------------------------------------------------------------------------
+
+" don't show parse errors in a separate window
+let g:zig_fmt_parse_errors = 0
+" disable format-on-save from `ziglang/zig.vim`
+let g:zig_fmt_autosave = 0
+
+" code action on save
+" autocmd BufWritePre *.zig,*.zon call CocActionAsync('fixAll')
+" autocmd BufWritePre *.zig,*.zon call CocActionAsync('format')
+
+" source.organizeImport
+" autocmd BufWritePre *.zig,*.zon call CocActionAsync('organizeImport')
 
 " ----------------------------------------------------------------------------
 " ALE
 " ----------------------------------------------------------------------------
+
+let g:ale_disable_lsp = 1  " Let coc handle all LSP, ALE just fixes
+
 nnoremap <Leader>ln :ALENextWrap<CR>
 nnoremap <Leader>lp :ALEPreviousWrap<CR>
 nnoremap <leader>p :ALEFix<CR>
@@ -126,7 +167,7 @@ let g:ale_linters = {
 \}
 let g:ale_cpp_cc_options = '-std=c++17 -Wall -I/usr/local/Cellar/sdl2/2.32.0/include/SDL2 -L/usr/local/Cellar/sdl2/2.32.0/lib'
 
-let g:ale_c_cc_executable = 'gcc-14'
+let g:ale_c_cc_executable = 'clang'
 let g:ale_c_cc_options = '-std=c23 -Wall -I/usr/local/Cellar/raylib/5.5/include -L/usr/local/Cellar/raylib/5.5/lib'
 
 let g:ale_sign_error = '🍄'
@@ -141,7 +182,6 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'pangloss/vim-javascript'
   Plug 'vim-scripts/matchit.zip'
-  " Plug 'mustache/vim-mustache-handlebars'
   Plug 'joukevandermaas/vim-ember-hbs'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'jiangmiao/auto-pairs'
@@ -162,6 +202,11 @@ call plug#begin()
   Plug 'dracula/vim'
   Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'vim-utils/vim-man'
+  Plug 'fidian/hexmode'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'ziglang/zig.vim'
+  Plug 'neoclide/jsonc.vim'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 "End vim-plug manager
 
