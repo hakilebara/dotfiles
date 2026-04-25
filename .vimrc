@@ -48,7 +48,7 @@ nnoremap <C-g>g :Ag!<CR>
 " to have Ag ignore specific files run this command in your project folder
 " echo package-lock.json > .ignore
 
-"fzf Find 
+"fzf Find
 " install bat to enable file preview
 nnoremap <C-p> :Files<CR>
 
@@ -105,6 +105,19 @@ map <Leader>T :tab term ++close<cr>
 tmap <Leader>T <c-w>:tab term ++close<cr>
 
 " ----------------------------------------------------------------------------
+" auto-pairs
+" ----------------------------------------------------------------------------
+
+" disable auto-pairs on '>' as it is already handled by coc-html
+let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`'}
+
+" ----------------------------------------------------------------------------
+" Emmet
+" ----------------------------------------------------------------------------
+
+" CTRL + y + ,
+
+" ----------------------------------------------------------------------------
 " Coc
 " ----------------------------------------------------------------------------
 
@@ -119,6 +132,26 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Rename symbol
 nmap <leader>rn <Plug>(coc-rename)
+
+" autocompletion
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ "\<Tab>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+" toggle inlay hints
+nnoremap <Leader>ih :CocCommand document.toggleInlayHint<CR>
+
+let g:coc_global_extensions = [
+  \ 'coc-html',
+  \ 'coc-rust-analyzer',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-css',
+\]
 
 " ----------------------------------------------------------------------------
 " ZIG LSP with Coc
@@ -193,10 +226,14 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'ap/vim-css-color'
- Plug 'hail2u/vim-css3-syntax'
+  Plug 'hail2u/vim-css3-syntax'
+
+  " Git extensions
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
+  " a commit browser
   Plug 'junegunn/gv.vim'
+
   Plug 'sukima/vim-javascript-imports'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'dracula/vim'
@@ -210,7 +247,7 @@ call plug#begin()
 call plug#end()
 "End vim-plug manager
 
-"" Must come after vim-plug config 
+"" Must come after vim-plug config
 "" https://github.com/altercation/vim-colors-solarized/issues/190
 " colorscheme solarized
-colorscheme dracula 
+colorscheme dracula
