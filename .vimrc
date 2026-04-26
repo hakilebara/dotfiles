@@ -111,6 +111,10 @@ tmap <Leader>T <c-w>:tab term ++close<cr>
 " disable auto-pairs on '>' as it is already handled by coc-html
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`'}
 
+" scroll within the coc popup
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+
 " ----------------------------------------------------------------------------
 " Emmet
 " ----------------------------------------------------------------------------
