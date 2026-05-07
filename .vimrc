@@ -103,18 +103,6 @@ tmap <Leader>t <c-w>:term ++close<cr>
 " vim-powered terminal in new tab
 map <Leader>T :tab term ++close<cr>
 tmap <Leader>T <c-w>:tab term ++close<cr>
-
-" ----------------------------------------------------------------------------
-" auto-pairs
-" ----------------------------------------------------------------------------
-
-" disable auto-pairs on '>' as it is already handled by coc-html
-let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`'}
-
-" scroll within the coc popup
-nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-
 " ----------------------------------------------------------------------------
 " Emmet
 " ----------------------------------------------------------------------------
@@ -124,6 +112,11 @@ nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(
 " ----------------------------------------------------------------------------
 " Coc
 " ----------------------------------------------------------------------------
+
+" scroll within the coc popup
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+
 
 " Show documentation/hover popup
 nnoremap <silent> K :call CocActionAsync('doHover')<CR>
@@ -155,6 +148,8 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-eslint',
   \ 'coc-css',
+  \ 'coc-tsserver',
+  \ 'coc-pyright',
 \]
 
 " ----------------------------------------------------------------------------
