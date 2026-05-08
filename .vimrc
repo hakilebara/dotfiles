@@ -158,6 +158,7 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-tsserver',
   \ 'coc-pyright',
+  \ 'coc-snippets',
 \]
 
 " ----------------------------------------------------------------------------
@@ -219,7 +220,14 @@ let g:ale_sign_warning = '🙀'
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "Disable automatic comment insertion
 
-"Start of vim-plug manager
+" ----------------------------------------------------------------------------
+" UltiSnips
+" ----------------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+"Start of im-plug manager
 call plug#begin()
   Plug 'w0rp/ale'
   Plug 'scrooloose/nerdtree'
@@ -256,6 +264,8 @@ call plug#begin()
   Plug 'neoclide/jsonc.vim'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'yggdroot/indentline'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
 call plug#end()
 "End vim-plug manager
 
