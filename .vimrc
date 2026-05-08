@@ -1,8 +1,15 @@
 " Getting started
-"  - install vim-plug https://github.com/junegunn/vim-plug
+"
+" ```
+" # install vim-plug https://github.com/junegunn/vim-plug
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" - mkdir ~/.vim/{_temp,_backup}
+"   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" mkdir ~/.vim/{_temp,_backup}
+" # install flake8 a python styleguide linter
+" brew install flake8
+" brew install black
+" brew install isort
+" ```
 syntax on
 filetype plugin indent on
 
@@ -23,6 +30,7 @@ set number " Show current line number
 set tabstop=2
 set shiftwidth=2 expandtab
 
+set mouse=a
 
 "" Colors
 set termguicolors
@@ -174,6 +182,8 @@ let g:zig_fmt_autosave = 0
 " ----------------------------------------------------------------------------
 
 let g:ale_disable_lsp = 1  " Let coc handle all LSP, ALE just fixes
+let g:ale_fix_on_save = 1
+let g:ale_python_flake8_options = '--extend-ignore=E501' " disable line-too-long lint errors
 
 nnoremap <Leader>ln :ALENextWrap<CR>
 nnoremap <Leader>lp :ALEPreviousWrap<CR>
@@ -183,6 +193,7 @@ autocmd FileType html.handlebars let g:ale_javascript_prettier_options = '--pars
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black', 'isort'],
 \   'javascript': ['eslint'],
 \   'css': ['stylelint'],
 \   'scss': ['stylelint'],
@@ -191,6 +202,7 @@ let g:ale_fixers = {
 \   'markdown': ['prettier'],
 \}
 let g:ale_linters = {
+\   'python': ['flake8'],
 \   'javascript': ['eslint'],
 \   'css': ['stylelint'],
 \   'scss': ['stylelint'],
@@ -243,6 +255,7 @@ call plug#begin()
   Plug 'ziglang/zig.vim'
   Plug 'neoclide/jsonc.vim'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'yggdroot/indentline'
 call plug#end()
 "End vim-plug manager
 
