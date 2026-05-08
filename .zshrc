@@ -9,6 +9,7 @@ alias vim='/usr/local/bin/vim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias g++='g++ -std=c++17 -Wall'
 alias gcc='gcc-14 -std=c23 -Wall'
+alias watch='entr -r'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.

@@ -1,0 +1,8 @@
+snippet fread "Read file lines" b
+import { readFile } from 'node:fs/promises';
+
+const lines = (await readFile(${1:'data.txt'}, 'utf-8')).split('\n');
+for (const ${2:line} of lines) {
+    ${3:console.log(${2:line});}
+}
+endsnippet

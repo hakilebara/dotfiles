@@ -1,0 +1,10 @@
+snippet pkg "package.json for Node TS" b
+{
+  "name": "${1:my-project}",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-strip-types ${2:index.ts}"
+  }
+}
+endsnippet
