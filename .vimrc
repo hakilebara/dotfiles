@@ -13,6 +13,8 @@
 syntax on
 filetype plugin indent on
 
+autocmd BufNewFile * startinsert " open new file in insert mode
+
 set autoindent
 set smartindent
 set encoding=utf-8
@@ -27,10 +29,20 @@ set cursorcolumn
 set relativenumber " Show in column relative number of line
 set number " Show current line number
 
+set colorcolumn=88
+
 set tabstop=2
 set shiftwidth=2 expandtab
 
+" allow mouse to resize window panes
 set mouse=a
+
+" open link under cursor with ':gx'
+let g:netrw_browsex_viewer= "open"
+
+" Delete word backward in insert mode with Option+Backspace
+" imap <M-BS> <C-W>
+imap  <C-W>
 
 "" Colors
 set termguicolors
@@ -83,17 +95,6 @@ set backspace=indent,eol,start
 set backupdir=~/.vim/_backup//    " where to put backup files.
 set directory=~/.vim/_temp//      " where to put swap files.
 
-""
-"" mustache
-""
-let g:mustache_abbreviations = 1
-
-""
-"" htmlbars
-""
-""autocmd BufRead,BufNewFile *.js HighlightInlineHbs
-
-
 let g:AutoPairsShortcutFastWrap = '<C-e>'
 
 let g:mustache_abbreviations = 1
@@ -138,22 +139,32 @@ nmap <silent> gr <Plug>(coc-references)
 " Rename symbol
 nmap <leader>rn <Plug>(coc-rename)
 
-" autocompletion
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ "\<Tab>"
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-
+" confirm coc autocompletion selection
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " toggle inlay hints
 nnoremap <Leader>ih :CocCommand document.toggleInlayHint<CR>
 
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+" snippets placeholder navigation
+" let g:coc_snippet_next = '<tab>'
+" let g:coc_snippet_prev = '<s-tab>'
+
 let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-rust-analyzer',
-  \ 'coc-tsserver',
   \ 'coc-eslint',
   \ 'coc-css',
   \ 'coc-tsserver',
@@ -184,7 +195,7 @@ let g:zig_fmt_autosave = 0
 
 let g:ale_disable_lsp = 1  " Let coc handle all LSP, ALE just fixes
 let g:ale_fix_on_save = 1
-let g:ale_python_flake8_options = '--extend-ignore=E501' " disable line-too-long lint errors
+let g:ale_python_flake8_options = '--extend-ignore=E501 --max-line-length=88' " disable line-too-long lint errors
 
 nnoremap <Leader>ln :ALENextWrap<CR>
 nnoremap <Leader>lp :ALEPreviousWrap<CR>
@@ -204,6 +215,8 @@ let g:ale_fixers = {
 \}
 let g:ale_linters = {
 \   'python': ['flake8'],
+\   'json': [],
+\   'jsonc': [],
 \   'javascript': ['eslint'],
 \   'css': ['stylelint'],
 \   'scss': ['stylelint'],
@@ -220,32 +233,22 @@ let g:ale_sign_warning = '🙀'
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "Disable automatic comment insertion
 
-" ----------------------------------------------------------------------------
-" UltiSnips
-" ----------------------------------------------------------------------------
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 "Start of im-plug manager
 call plug#begin()
   Plug 'w0rp/ale'
   Plug 'scrooloose/nerdtree'
   Plug 'tpope/vim-surround'
-  Plug 'pangloss/vim-javascript'
-  Plug 'vim-scripts/matchit.zip'
-  Plug 'joukevandermaas/vim-ember-hbs'
-  Plug 'nathanaelkane/vim-indent-guides'
+  " Plug 'pangloss/vim-javascript'
+  " Plug 'joukevandermaas/vim-ember-hbs'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'mattn/emmet-vim'
+  Plug 'mattn/emmet-vim' " CTRL+y+,
   Plug 'tomtom/tcomment_vim'
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'slashmili/alchemist.vim'
-  Plug 'elixir-lang/vim-elixir'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'ap/vim-css-color'
-  Plug 'hail2u/vim-css3-syntax'
+  " Plug 'ap/vim-css-color'
+  " Plug 'hail2u/vim-css3-syntax'
 
   " Git extensions
   Plug 'tpope/vim-fugitive'
@@ -254,22 +257,26 @@ call plug#begin()
   Plug 'junegunn/gv.vim'
 
   Plug 'sukima/vim-javascript-imports'
-  Plug 'terryma/vim-multiple-cursors'
-  Plug 'dracula/vim'
-  Plug 'octol/vim-cpp-enhanced-highlight'
+  " Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'vim-utils/vim-man'
   Plug 'fidian/hexmode'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'ziglang/zig.vim'
   Plug 'neoclide/jsonc.vim'
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'yggdroot/indentline'
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
+  Plug 'morhetz/gruvbox'
 call plug#end()
 "End vim-plug manager
 
 "" Must come after vim-plug config
-"" https://github.com/altercation/vim-colors-solarized/issues/190
-" colorscheme solarized
-colorscheme dracula
+set background=dark
+colorscheme gruvbox
+" highlight ColorColumn guibg=#44475a
+
+" allow background transparency
+highlight Normal guibg=NONE ctermbg=NONE
+highlight CocHintHighlight guifg=#fabd2f guibg=NONE ctermbg=NONE ctermfg=yellow
+highlight CocUnusedHighlight guifg=#fabd2f guibg=NONE ctermbg=NONE ctermfg=yellow
+highlight CocErrorHighlight guifg=#fabd2f guibg=NONE ctermbg=NONE ctermfg=yellow
+highlight CursorLine guibg=#504945 ctermbg=239
+highlight CursorColumn guibg=#504945 ctermbg=239

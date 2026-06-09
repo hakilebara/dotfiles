@@ -1,15 +1,23 @@
 # export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
-export PATH="/usr/local/opt/php71/bin:$PATH"
+# export PATH="/usr/local/opt/php71/bin:$PATH"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-alias vim='/usr/local/bin/vim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias g++='g++ -std=c++17 -Wall'
-alias gcc='gcc-14 -std=c23 -Wall'
-alias watch='entr -r'
+alias g++='g++-15 -std=c++17 -Wall'
+alias gcc='gcc-15 -std=c23 -Wall'
+
+function mkcd {
+  mkdir -p "$1" && cd "$1"
+}
+
+function watch {
+  echo "$argv[-1]" | entr -rc "$@"
+}
+
+bindkey '^[^?' backward-kill-word
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -97,11 +105,41 @@ export LANG=en_US.UTF-8
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+# source /usr/local/opt/chruby/share/chruby/chruby.sh
+# source /usr/local/opt/chruby/share/chruby/auto.sh
 
 . "$HOME/.local/bin/env"
+
+# fnm a node version manager  (slows down shell bootup time)
+FNM_PATH="/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]; then
+  eval "`fnm env`"
+fi
+source ${HOME}/.ghcup/env
+
+# (Slows down shell bootup time)
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+export PATH="$HOME/go/bin:$PATH"
+
+# opencode
+export PATH=/Users/kaos/.opencode/bin:$PATH
+
+# wasi_sdk
+export WASI_SDK_PATH="/Users/kaos/Downloads/wasi-sdk-32.0-arm64-macos"
+
+# pnpm
+export PNPM_HOME="/Users/kaos/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end

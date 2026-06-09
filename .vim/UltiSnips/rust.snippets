@@ -1,0 +1,32 @@
+snippet fread "Read a file line by line with BufReader" b
+use std::fs::File;
+use std::io::{self, BufRead};
+
+fn main() -> io::Result<()> {
+    let file = File::open("${1:file.txt}")?;
+    let reader = io::BufReader::new(file);
+
+    for line in reader.lines() {
+        let line = line?;
+        ${2:println!("{}", line);}
+    }
+
+    Ok(())
+}
+$0
+endsnippet
+
+snippet fwrite "Write to a file with BufWriter" b
+use std::fs::File;
+use std::io::{self, BufWriter, Write};
+
+fn main() -> io::Result<()> {
+    let file = File::create("${1:file.txt}")?;
+    let mut writer = BufWriter::new(file);
+
+    writeln!(writer, "${2:Hello, world!}")?;
+
+    Ok(())
+}
+$0
+endsnippet

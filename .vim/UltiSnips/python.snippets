@@ -1,7 +1,12 @@
 snippet fread "Read file line by line" b
 with open(${1:"data.txt"}) as ${2:f}:
     for ${3:line} in ${2:f}:
-        print(${3:line})
+        print(${3:line}.strip())
+endsnippet
+
+snippet fwrite "Write to a file"b
+with open(${1:filename},'w') as ${2:f}:
+	${2:f}.write(${3:"Lorem ipsum"})
 endsnippet
 
 snippet main "Barebone main.py" b
@@ -14,4 +19,67 @@ def main():
 
 if __name__ == "__main__":
     main()
+endsnippet
+
+snippet cl "Class definition" b
+class ${1:ClassName}:
+    def __init__(self, ${3:args}):
+`!p
+args = [a.strip() for a in t[3].split(',') if a.strip()]
+snip.rv = '\n'.join('        self.' + a + ' = ' + a for a in args)
+`
+        ${0}
+
+    def __repr__(self):
+        return f"${1:ClassName}(`!p
+args = [a.strip() for a in t[3].split(',') if a.strip()]
+snip.rv = ', '.join(a + '={self.' + a + '!r}' for a in args)
+`)"
+endsnippet
+
+snippet pygame "Pygame basic game loop" b
+import pygame
+
+# pygame setup
+pygame.init()
+screen = pygame.display.set_mode((1280, 720))
+clock = pygame.time.Clock()
+running = True
+
+while running:
+    # poll for events
+    # pygame.QUIT event means the user clicked X to close your window
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # fill the screen with a color to wipe away anything from last frame
+    screen.fill("purple")
+
+    # RENDER YOUR GAME HERE
+
+    # flip() the display to put your work on screen
+    pygame.display.flip()
+
+    clock.tick(60)  # limits FPS to 60
+
+pygame.quit()
+endsnippet
+
+snippet raylib "Raylib basic game loop" b
+import pyray as rl
+
+rl.init_window(800, 450, "Hello")
+rl.set_target_fps(60)
+while not rl.window_should_close():
+    rl.begin_drawing()
+    rl.clear_background(rl.WHITE)
+    rl.draw_text("Hello world", 190, 200, 20, rl.VIOLET)
+    rl.end_drawing()
+rl.close_window()
+endsnippet
+
+snippet doctest "Run Doctest testmod()" b
+    import doctest
+    doctest.testmod()
 endsnippet

@@ -1,4 +1,10 @@
 {
+  // "typescript.showUnused": false,
+  // "typescript.suggestionActions.enabled": false,
+  // "typescript.suggest.enabled": false,
+  "tsserver.trace.server": "verbose",
+  "snippets.ultisnips.enable": true,
+  "inlayHint.enable": true,
   // All nested settings will only affect Zig files.
   "[zig]": {
     // enable format-on-save from CoC + ZLS
