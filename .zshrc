@@ -17,8 +17,6 @@ function watch {
   echo "$argv[-1]" | entr -rc "$@"
 }
 
-bindkey '^[^?' backward-kill-word
-
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -143,3 +141,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+
+bindkey $'\e\177' backward-kill-word
