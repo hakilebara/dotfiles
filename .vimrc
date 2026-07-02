@@ -195,7 +195,7 @@ let g:zig_fmt_autosave = 0
 
 let g:ale_disable_lsp = 1  " Let coc handle all LSP, ALE just fixes
 let g:ale_fix_on_save = 1
-let g:ale_python_flake8_options = '--extend-ignore=E501 --max-line-length=88' " disable line-too-long lint errors
+let g:ale_python_flake8_options = '--extend-ignore=E203,E501 --max-line-length=88' " disable line-too-long lint errors
 
 nnoremap <Leader>ln :ALENextWrap<CR>
 nnoremap <Leader>lp :ALEPreviousWrap<CR>

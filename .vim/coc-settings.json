@@ -5,7 +5,6 @@
   "tsserver.trace.server": "verbose",
   "snippets.ultisnips.enable": true,
   "inlayHint.enable": true,
-  // All nested settings will only affect Zig files.
   "[zig]": {
     // enable format-on-save from CoC + ZLS
     //
@@ -13,20 +12,25 @@
     // The Zig FAQ answers some questions about `zig fmt`:
     // https://github.com/ziglang/zig/wiki/FAQ
     "coc.preferences.formatOnSave": true,
-
     // Show inlay hints in the editor. Inlay hints are short annotations within the code,
     // which show variable types or parameter names.
     // "inlayHint.enable": true,
-
     // Use the language server to perform code highlighting
     "semanticTokens.enable": true
   },
-
+  "coc.preferences.formatOnSave": true,
+  "rust-analyzer.rustfmt.extraArgs": [
+    "--config",
+    "max_width=88"
+  ],
   "languageserver": {
     "zls": {
       // use `"command": "zls"` if `zls` is in your PATH
       "command": "zls",
-      "filetypes": [ "zig", "zon" ],
+      "filetypes": [
+        "zig",
+        "zon"
+      ],
       // There are two ways to set config options:
       //   - edit your `zls.json` that applies to any editor that uses ZLS
       //   - set in-editor config options with the `settings` field below.
@@ -39,7 +43,6 @@
         // Further information about build-on save:
         // https://zigtools.org/zls/guides/build-on-save/
         "zls.enable_build_on_save": true,
-
         // omit the following line if `zig` is in your PATH
         //"zls.zig_exe_path": "/path/to/zig_executable"
       }
