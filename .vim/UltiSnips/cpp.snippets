@@ -1,0 +1,24 @@
+snippet raylib "raylib C++ starter" b
+#include <raylib.h>
+// bear -- g++ -I lib/raylib/src libraylib.a main.cpp -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL
+
+int main() {
+    const int screenWidth = 800;
+    const int screenHeight = 450;
+
+    InitWindow(screenWidth, screenHeight, "${1:My Game}");
+    SetTargetFPS(60);
+
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        ${2:// TODO: Update and Draw}
+
+        EndDrawing();
+    }
+
+    CloseWindow();
+    return 0;
+}
+endsnippet
