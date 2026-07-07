@@ -170,6 +170,7 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-pyright',
   \ 'coc-snippets',
+  \ 'coc-clangd',
 \]
 
 " ----------------------------------------------------------------------------
