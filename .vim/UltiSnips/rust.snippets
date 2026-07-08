@@ -30,3 +30,15 @@ fn main() -> io::Result<()> {
 }
 $0
 endsnippet
+
+snippet test "Rust test module" b
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn ${1:test_name}() {
+        ${0}
+    }
+}
+endsnippet
