@@ -122,6 +122,14 @@ tmap <Leader>T <c-w>:tab term ++close<cr>
 " Coc
 " ----------------------------------------------------------------------------
 
+" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+
 " scroll within the coc popup
 nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -130,8 +138,14 @@ nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(
 " Show documentation/hover popup
 nnoremap <silent> K :call CocActionAsync('doHover')<CR>
 
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+nmap <silent><nowait> [g <Plug>(coc-diagnostic-prev)
+nmap <silent><nowait> ]g <Plug>(coc-diagnostic-next)
+
 " Go to definition
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent><nowait> gy <Plug>(coc-type-definition)
 
 " Go to references
 nmap <silent> gr <Plug>(coc-references)
@@ -158,9 +172,10 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
-" snippets placeholder navigation
-" let g:coc_snippet_next = '<tab>'
-" let g:coc_snippet_prev = '<s-tab>'
+" Mappings for CoCList
+" Show all diagnostics
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>q :<C-u>CocDiagnostics<cr>
 
 let g:coc_global_extensions = [
   \ 'coc-html',
@@ -215,9 +230,10 @@ let g:ale_fixers = {
 \   'markdown': ['prettier'],
 \}
 let g:ale_linters = {
-\   'python': ['flake8'],
+\   'rust': [],
 \   'json': [],
 \   'jsonc': [],
+\   'python': ['flake8'],
 \   'javascript': ['eslint'],
 \   'css': ['stylelint'],
 \   'scss': ['stylelint'],

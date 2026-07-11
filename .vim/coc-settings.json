@@ -2,6 +2,7 @@
   // "typescript.showUnused": false,
   // "typescript.suggestionActions.enabled": false,
   // "typescript.suggest.enabled": false,
+  "diagnostic.virtualTextCurrentLineOnly": false,
   "tsserver.trace.server": "verbose",
   "snippets.ultisnips.enable": true,
   "inlayHint.enable": true,
@@ -23,6 +24,15 @@
     "--config",
     "max_width=88"
   ],
+  "rust-analyzer.checkOnSave": true,
+  "rust-analyzer.check.command": "clippy", // richer lints than plain `check`
+  "rust-analyzer.check.extraArgs": [
+    "--all-targets"
+  ],
+  "[rust]": {
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextPrefix": " ❯ "
+  },
   "languageserver": {
     "zls": {
       // use `"command": "zls"` if `zls` is in your PATH
