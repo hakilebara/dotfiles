@@ -16,19 +16,9 @@ fn main() -> io::Result<()> {
 $0
 endsnippet
 
-snippet fwrite "Write to a file with BufWriter" b
-use std::fs::File;
-use std::io::{self, BufWriter, Write};
-
-fn main() -> io::Result<()> {
-    let file = File::create("${1:file.txt}")?;
-    let mut writer = BufWriter::new(file);
-
-    writeln!(writer, "${2:Hello, world!}")?;
-
-    Ok(())
-}
-$0
+snippet fwrite "Write to a file" b
+// use std::fs;
+fs::write("${1:output.txt}", ${2:"Hello, world!\n"}).unwrap();
 endsnippet
 
 snippet test "Rust test module" b
