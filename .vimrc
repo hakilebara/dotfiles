@@ -154,7 +154,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 
 " confirm coc autocompletion selection
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " toggle inlay hints
 nnoremap <Leader>ih :CocCommand document.toggleInlayHint<CR>
@@ -249,7 +249,7 @@ let g:ale_sign_error = '🍄'
 let g:ale_sign_warning = '🙀'
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "Disable automatic comment insertion
-
+autocmd FileType rust setlocal formatoptions+=r "keep auto comment insertion in rust files
 
 "Start of im-plug manager
 call plug#begin()
