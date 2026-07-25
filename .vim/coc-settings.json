@@ -56,6 +56,17 @@
         // omit the following line if `zig` is in your PATH
         //"zls.zig_exe_path": "/path/to/zig_executable"
       }
+    },
+    "wasm-language-tools": {
+      "command": "wat_server", // or the absolute path to the executable
+      "filetypes": [
+        "wat"
+      ],
+      "settings": {
+        "format": {
+          "splitClosingParens": false
+        }
+      }
     }
   }
 }
