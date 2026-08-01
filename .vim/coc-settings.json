@@ -20,10 +20,10 @@
     "semanticTokens.enable": true
   },
   "coc.preferences.formatOnSave": true,
-  "rust-analyzer.rustfmt.extraArgs": [
-    "--config",
-    "max_width=88"
-  ],
+  // "rust-analyzer.rustfmt.extraArgs": [
+  //   "--config",
+  //   "max_width=90"
+  // ],
   "rust-analyzer.checkOnSave": true,
   "rust-analyzer.check.command": "clippy", // richer lints than plain `check`
   "rust-analyzer.check.extraArgs": [

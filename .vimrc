@@ -29,7 +29,7 @@ set cursorcolumn
 set relativenumber " Show in column relative number of line
 set number " Show current line number
 
-set colorcolumn=88
+" set colorcolumn=88
 
 set tabstop=2
 set shiftwidth=2 expandtab
@@ -100,6 +100,10 @@ let g:AutoPairsShortcutFastWrap = '<C-e>'
 let g:mustache_abbreviations = 1
 
 let g:vim_javascript_imports_map = '<Leader>e'
+" ----------------------------------------------------------------------------
+" NASM
+" ----------------------------------------------------------------------------
+autocmd BufNewFile,BufRead *.asm set filetype=nasm
 
 " ----------------------------------------------------------------------------
 " Vim terminal
@@ -163,7 +167,8 @@ inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ CheckBackspace() ? "\<TAB>" :
-      \ coc#refresh()
+      \ "\<TAB>"
+      " \ coc#refresh()
 
 function! CheckBackspace() abort
   let col = col('.') - 1
@@ -179,7 +184,6 @@ nnoremap <silent> <space>q :<C-u>CocDiagnostics<cr>
 
 let g:coc_global_extensions = [
   \ 'coc-html',
-  \ 'coc-rust-analyzer',
   \ 'coc-eslint',
   \ 'coc-css',
   \ 'coc-tsserver',
@@ -187,6 +191,7 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-clangd',
 \]
+" \ 'coc-rust-analyzer',
 
 " ----------------------------------------------------------------------------
 " ZIG LSP with Coc
@@ -213,6 +218,7 @@ let g:ale_disable_lsp = 1  " Let coc handle all LSP, ALE just fixes
 let g:ale_fix_on_save = 1
 let g:ale_python_flake8_options = '--extend-ignore=E203,E501 --max-line-length=88' " disable line-too-long lint errors
 
+nnoremap <Leader>ld :ALEDetail<CR>
 nnoremap <Leader>ln :ALENextWrap<CR>
 nnoremap <Leader>lp :ALEPreviousWrap<CR>
 nnoremap <leader>p :ALEFix<CR>
@@ -228,9 +234,10 @@ let g:ale_fixers = {
 \   'html': ['prettier'],
 \   'html.handlebars': ['prettier'],
 \   'markdown': ['prettier'],
+\   'rust': ['rustfmt'],
 \}
 let g:ale_linters = {
-\   'rust': [],
+\   'rust': ['cargo', 'clippy'],
 \   'json': [],
 \   'jsonc': [],
 \   'python': ['flake8'],
@@ -245,8 +252,13 @@ let g:ale_cpp_cc_options = '-std=c++17 -Wall -I/usr/local/Cellar/sdl2/2.32.0/inc
 let g:ale_c_cc_executable = 'clang'
 let g:ale_c_cc_options = '-std=c23 -Wall -I/usr/local/Cellar/raylib/5.5/include -L/usr/local/Cellar/raylib/5.5/lib'
 
+let g:ale_nasm_nasm_options = '-f macho64'
+
 let g:ale_sign_error = '🍄'
 let g:ale_sign_warning = '🙀'
+
+let g:ale_rust_cargo_use_check = 1  " Use 'cargo check' instead of full build
+let g:ale_rust_clippy_options = '--all-targets'  " Keep your clippy settings
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "Disable automatic comment insertion
 autocmd FileType rust setlocal formatoptions+=r "keep auto comment insertion in rust files
