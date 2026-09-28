@@ -193,6 +193,12 @@ let g:coc_global_extensions = [
 \]
 " \ 'coc-rust-analyzer',
 
+" fold
+" 11 - toggle fold of current function
+nnoremap 11 za
+autocmd FileType rust setlocal foldmethod=indent
+set foldlevelstart=99
+
 " ----------------------------------------------------------------------------
 " ZIG LSP with Coc
 " https://zigtools.org/zls/editors/vim/coc/
@@ -267,7 +273,13 @@ autocmd FileType rust setlocal formatoptions+=r "keep auto comment insertion in 
 call plug#begin()
   Plug 'w0rp/ale'
   Plug 'scrooloose/nerdtree'
+
+  " vim-surround
+  " Press cs"' inside \"Hello world!\" to change it to 'Hello world!'
+  " to remove the delimiters entirely, press ds<delim> eg. ds", or ds{
+  " try yss>
   Plug 'tpope/vim-surround'
+
   " Plug 'pangloss/vim-javascript'
   " Plug 'joukevandermaas/vim-ember-hbs'
   Plug 'jiangmiao/auto-pairs'
