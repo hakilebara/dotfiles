@@ -196,6 +196,7 @@ let g:coc_global_extensions = [
 " fold
 " 11 - toggle fold of current function
 nnoremap 11 za
+nnoremap ff za
 autocmd FileType rust setlocal foldmethod=indent
 set foldlevelstart=99
 
